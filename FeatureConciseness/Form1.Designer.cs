@@ -54,6 +54,7 @@
             this.bt_upload.TabIndex = 1;
             this.bt_upload.Text = "Upload File";
             this.bt_upload.UseVisualStyleBackColor = true;
+            this.bt_upload.Click += new System.EventHandler(this.bt_upload_Click);
             // 
             // bt_calculate
             // 
@@ -63,6 +64,7 @@
             this.bt_calculate.TabIndex = 2;
             this.bt_calculate.Text = "Calculate Conciseness";
             this.bt_calculate.UseVisualStyleBackColor = true;
+            this.bt_calculate.Click += new System.EventHandler(this.bt_calculate_Click);
             // 
             // textBox1
             // 
@@ -80,7 +82,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(355, 116);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Features (Functions) Total :\r\nLine of Code :\r\nConciseness : ";
+            this.label2.Text = "Features Total :\r\nLine of Code :\r\nConciseness : ";
             // 
             // Form1
             // 
