@@ -19,7 +19,7 @@ namespace FeatureConciseness
             InitializeComponent();
         }
 
-        private string selectedFilePath; // Deklarasikan di sini
+        private string selectedFilePath;
 
         private void bt_upload_Click(object sender, EventArgs e)
         {
@@ -31,7 +31,7 @@ namespace FeatureConciseness
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     selectedFilePath = openFileDialog.FileName;
-                    textBox1.Text = selectedFilePath; // Set the TextBox value to the selected file path.
+                    textBox1.Text = selectedFilePath;
                 }
             }
         }
@@ -41,13 +41,18 @@ namespace FeatureConciseness
             if (!string.IsNullOrEmpty(selectedFilePath))
             {
                 string[] lines = File.ReadAllLines(selectedFilePath);
-                int totalFunctions = CountFunctions(lines);
+                int totalFeatures = CountFeatures(lines);
                 int totalLines = CountNonEmptyNonCommentLines(lines);
+                int totalLOC = CountCommentLines(lines);
 
                 if (totalLines > 0)
                 {
-                    double conciseness = (double)totalFunctions / totalLines;
-                    label2.Text = $"Features Total: {totalFunctions}\nLine of Code: {totalLines}\nConciseness (Features/Line of Code): {conciseness:F2}";
+                    double conciseness1 = (double)totalLines / totalFeatures;
+                    double conciseness2 = (double)totalLOC / totalFeatures;
+                    label2.Text = $"Total Number of Function : {totalFeatures}\nTotal Number Line of Code : {totalLOC}\nTotal Number of Executable Line of Code : {totalLines}\n\nConciseness (#Line of Code / Function) = {conciseness1:F2}\nConciseness  (#Executable Line of Code / Function) = {conciseness2:F2}";
+
+                    string methodNames = ExtractMethodNames(lines);
+                    label3.Text = $"{methodNames}";
                 }
                 else
                 {
@@ -60,10 +65,12 @@ namespace FeatureConciseness
             }
         }
 
-        private int CountFunctions(string[] lines)
+        private int CountFeatures(string[] lines)
         {
             int featureCount = 0;
             bool inMultilineComment = false;
+
+            string pattern = @"^\s*(private|public|protected|internal|static)?\s\w+\s\w+\s*\(.*\)";
 
             foreach (string line in lines)
             {
@@ -78,22 +85,13 @@ namespace FeatureConciseness
                 }
                 else
                 {
-                    // Memeriksa komentar multiline (/* ... */)
                     if (trimmedLine.StartsWith("/*"))
                     {
                         inMultilineComment = true;
-                        continue; // Langsung ke baris berikutnya
+                        continue;
                     }
 
-                    // Memeriksa komentar satu baris (// ...)
-                    if (trimmedLine.StartsWith("//"))
-                    {
-                        continue; // Langsung ke baris berikutnya
-                    }
-
-                    // Gunakan ekspresi reguler untuk mengidentifikasi deklarasi fungsi.
-                    string pattern = @"(private|public|protected|internal|static|void|int|bool|double|float|decimal|char|string)?\s+(\w+\s+){0,3}\(";
-                    if (Regex.IsMatch(trimmedLine, pattern))
+                    if (!trimmedLine.StartsWith("//") && Regex.IsMatch(trimmedLine, pattern))
                     {
                         featureCount++;
                     }
@@ -102,7 +100,6 @@ namespace FeatureConciseness
 
             return featureCount;
         }
-        // Define a function to count non-empty non-comment lines in the code.
         private int CountNonEmptyNonCommentLines(string[] lines)
         {
             int nonEmptyLines = 0;
@@ -134,6 +131,60 @@ namespace FeatureConciseness
                 }
             }
             return nonEmptyLines;
+        }
+
+        private int CountCommentLines(string[] lines)
+        {
+            int allLines = 0;
+
+            foreach (string line in lines)
+            {
+                string trimmedLine = line.Trim();
+                allLines++;
+            }
+            return allLines;
+        }
+        private string ExtractMethodNames(string[] lines)
+        {
+            List<string> methodNames = new List<string>();
+            bool inMultilineComment = false;
+            int sequenceNumber = 1; // Sequential number counter
+
+            string pattern = @"^\s*(private|public|protected|internal|static)?\s\w+\s\w+\s*\(.*\)";
+
+            foreach (string line in lines)
+            {
+                string trimmedLine = line.Trim();
+
+                if (inMultilineComment)
+                {
+                    if (trimmedLine.Contains("*/"))
+                    {
+                        inMultilineComment = false;
+                    }
+                }
+                else
+                {
+                    if (trimmedLine.StartsWith("/*"))
+                    {
+                        inMultilineComment = true;
+                        continue;
+                    }
+
+                    if (!trimmedLine.StartsWith("//") && Regex.IsMatch(trimmedLine, pattern))
+                    {
+                        // Extract and add method names with sequential numbers
+                        string[] parts = trimmedLine.Split('(');
+                        string methodDeclaration = parts[0].Trim();
+                        string methodLine = $"{sequenceNumber}. {methodDeclaration}";
+                        methodNames.Add(methodLine);
+                        sequenceNumber++; // Increment the sequential number
+                    }
+                }
+            }
+
+            // Join the method names into a string
+            return string.Join("\n", methodNames);
         }
     }
 }
