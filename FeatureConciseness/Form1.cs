@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -186,5 +186,63 @@ namespace FeatureConciseness
             // Join the method names into a string
             return string.Join("\n", methodNames);
         }
+
+        private void bt_export_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(selectedFilePath))
+            {
+                string[] lines = File.ReadAllLines(selectedFilePath);
+                int totalFeatures = CountFeatures(lines);
+                int totalLines = CountNonEmptyNonCommentLines(lines);
+                int totalLOC = CountCommentLines(lines);
+
+                if (totalLines > 0)
+                {
+                    double conciseness1 = (double)totalLines / totalFeatures;
+                    double conciseness2 = (double)totalLOC / totalFeatures;
+
+                    // Create a StringBuilder to build the CSV content
+                    StringBuilder csvContent = new StringBuilder();
+                    csvContent.AppendLine("Total Number of Function,Total Number Line of Code,Total Number of Executable Line of Code,Conciseness (#Line of Code / Function),Conciseness (#Executable Line of Code / Function)");
+                    csvContent.AppendLine($"{totalFeatures},{totalLOC},{totalLines},{conciseness1:F2},{conciseness2:F2}");
+                    csvContent.AppendLine(); // Add an empty line
+                    csvContent.AppendLine("Function Name");
+
+                    string methodNames = ExtractMethodNames(lines);
+                    csvContent.AppendLine(methodNames);
+
+                    using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                    {
+                        saveFileDialog.Filter = "CSV Files (*.csv)|*.csv|All Files (*.*)|*.*";
+                        saveFileDialog.FilterIndex = 1;
+                        saveFileDialog.RestoreDirectory = true;
+
+                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            // Save the CSV content to the selected file
+                            string csvFilePath = saveFileDialog.FileName;
+                            File.WriteAllText(csvFilePath, csvContent.ToString());
+
+                            MessageBox.Show($"CSV file exported successfully: {csvFilePath}");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No code found in the file.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a C# file first.");
+            }
+        }
+
+        private void bt_help_Click(object sender, EventArgs e)
+        {
+            // Buka link menggunakan browser default
+            System.Diagnostics.Process.Start("https://github.com/seoeka/uas-pkpl-conciseness/blob/master/README.md");
+        }
+
     }
 }
