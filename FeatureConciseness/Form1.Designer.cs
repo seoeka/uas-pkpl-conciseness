@@ -1,4 +1,4 @@
-﻿namespace FeatureConciseness
+namespace FeatureConciseness
 {
     partial class Form1
     {
@@ -32,6 +32,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.bt_upload = new System.Windows.Forms.Button();
             this.bt_calculate = new System.Windows.Forms.Button();
+            this.bt_export = new System.Windows.Forms.Button();
+            this.bt_help = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -70,6 +72,28 @@
             this.bt_calculate.Text = "Calculate Conciseness";
             this.bt_calculate.UseVisualStyleBackColor = true;
             this.bt_calculate.Click += new System.EventHandler(this.bt_calculate_Click);
+            //
+            // Export CSV
+            //
+            this.bt_export.Location = new System.Drawing.Point(536, 390);
+            this.bt_export.Name = "bt_export";
+            this.bt_export.Size = new System.Drawing.Size(91, 30);
+            this.bt_export.TabIndex = 3;
+            this.bt_export.Text = "Export to CSV";
+            this.bt_export.UseVisualStyleBackColor = true;
+            this.bt_export.Click += new System.EventHandler(this.bt_export_Click);
+            this.Controls.Add(this.bt_export);
+            //
+            // Help
+            //
+            this.bt_help.Location = new System.Drawing.Point(636, 390);
+            this.bt_help.Name = "bt_help";
+            this.bt_help.Size = new System.Drawing.Size(91, 30);
+            this.bt_help.TabIndex = 3;
+            this.bt_help.Text = "Help";
+            this.bt_help.UseVisualStyleBackColor = true;
+            this.bt_help.Click += new System.EventHandler(this.bt_help_Click);
+            this.Controls.Add(this.bt_help);
             // 
             // textBox1
             // 
@@ -140,7 +164,6 @@
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
@@ -148,6 +171,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button bt_upload;
         private System.Windows.Forms.Button bt_calculate;
+        private System.Windows.Forms.Button bt_export;
+        private System.Windows.Forms.Button bt_help;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
