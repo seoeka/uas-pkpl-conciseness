@@ -28,6 +28,7 @@ namespace FeatureConciseness
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.bt_upload = new System.Windows.Forms.Button();
@@ -39,11 +40,16 @@ namespace FeatureConciseness
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(148, 49);
@@ -55,6 +61,7 @@ namespace FeatureConciseness
             // 
             // bt_upload
             // 
+            this.bt_upload.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.bt_upload.Location = new System.Drawing.Point(351, 120);
             this.bt_upload.Name = "bt_upload";
             this.bt_upload.Size = new System.Drawing.Size(91, 30);
@@ -65,38 +72,40 @@ namespace FeatureConciseness
             // 
             // bt_calculate
             // 
-            this.bt_calculate.Location = new System.Drawing.Point(205, 175);
+            this.bt_calculate.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bt_calculate.Location = new System.Drawing.Point(87, 158);
             this.bt_calculate.Name = "bt_calculate";
-            this.bt_calculate.Size = new System.Drawing.Size(140, 30);
+            this.bt_calculate.Size = new System.Drawing.Size(355, 30);
             this.bt_calculate.TabIndex = 2;
             this.bt_calculate.Text = "Calculate Conciseness";
             this.bt_calculate.UseVisualStyleBackColor = true;
             this.bt_calculate.Click += new System.EventHandler(this.bt_calculate_Click);
-            //
-            // Export CSV
-            //
-            this.bt_export.Location = new System.Drawing.Point(536, 390);
+            // 
+            // bt_export
+            // 
+            this.bt_export.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bt_export.Location = new System.Drawing.Point(538, 381);
             this.bt_export.Name = "bt_export";
-            this.bt_export.Size = new System.Drawing.Size(91, 30);
+            this.bt_export.Size = new System.Drawing.Size(160, 30);
             this.bt_export.TabIndex = 3;
             this.bt_export.Text = "Export to CSV";
             this.bt_export.UseVisualStyleBackColor = true;
             this.bt_export.Click += new System.EventHandler(this.bt_export_Click);
-            this.Controls.Add(this.bt_export);
-            //
-            // Help
-            //
-            this.bt_help.Location = new System.Drawing.Point(636, 390);
+            // 
+            // bt_help
+            // 
+            this.bt_help.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bt_help.Location = new System.Drawing.Point(704, 381);
             this.bt_help.Name = "bt_help";
-            this.bt_help.Size = new System.Drawing.Size(91, 30);
+            this.bt_help.Size = new System.Drawing.Size(132, 30);
             this.bt_help.TabIndex = 3;
             this.bt_help.Text = "Help";
             this.bt_help.UseVisualStyleBackColor = true;
             this.bt_help.Click += new System.EventHandler(this.bt_help_Click);
-            this.Controls.Add(this.bt_help);
             // 
             // textBox1
             // 
+            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(87, 122);
             this.textBox1.Name = "textBox1";
@@ -105,9 +114,10 @@ namespace FeatureConciseness
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(87, 216);
+            this.label2.Location = new System.Drawing.Point(87, 198);
             this.label2.MaximumSize = new System.Drawing.Size(355, 2);
             this.label2.MinimumSize = new System.Drawing.Size(355, 250);
             this.label2.Name = "label2";
@@ -118,6 +128,7 @@ namespace FeatureConciseness
             // 
             // panel1
             // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.AutoScroll = true;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label3);
@@ -137,6 +148,7 @@ namespace FeatureConciseness
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(604, 58);
@@ -145,11 +157,35 @@ namespace FeatureConciseness
             this.label4.TabIndex = 8;
             this.label4.Text = "Functions Name";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(161, 48);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
+            this.toolStripMenuItem1.Text = "How to Use Tool";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(160, 22);
+            this.toolStripMenuItem2.Text = "Online Notes";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.onlineNotesToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(899, 507);
+            this.Controls.Add(this.bt_export);
+            this.Controls.Add(this.bt_help);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);
@@ -162,8 +198,10 @@ namespace FeatureConciseness
             this.Text = "Conciseness";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
@@ -178,6 +216,9 @@ namespace FeatureConciseness
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }
 

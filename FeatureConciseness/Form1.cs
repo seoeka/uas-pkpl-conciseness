@@ -148,7 +148,7 @@ namespace FeatureConciseness
         {
             List<string> methodNames = new List<string>();
             bool inMultilineComment = false;
-            int sequenceNumber = 1; // Sequential number counter
+            int sequenceNumber = 1; 
 
             string pattern = @"^\s*(private|public|protected|internal|static)?\s\w+\s\w+\s*\(.*\)";
 
@@ -173,17 +173,14 @@ namespace FeatureConciseness
 
                     if (!trimmedLine.StartsWith("//") && Regex.IsMatch(trimmedLine, pattern))
                     {
-                        // Extract and add method names with sequential numbers
                         string[] parts = trimmedLine.Split('(');
                         string methodDeclaration = parts[0].Trim();
                         string methodLine = $"{sequenceNumber}. {methodDeclaration}";
                         methodNames.Add(methodLine);
-                        sequenceNumber++; // Increment the sequential number
+                        sequenceNumber++;
                     }
                 }
             }
-
-            // Join the method names into a string
             return string.Join("\n", methodNames);
         }
 
@@ -201,14 +198,13 @@ namespace FeatureConciseness
                     double conciseness1 = (double)totalLines / totalFeatures;
                     double conciseness2 = (double)totalLOC / totalFeatures;
 
-                    // Create a StringBuilder to build the CSV content
                     StringBuilder csvContent = new StringBuilder();
                     csvContent.AppendLine("Name;Output;");
-                    csvContent.AppendLine($"Total Number of Function;{totalFeatures};");
-                    csvContent.AppendLine($"Total Number Line of Code;{totalLines};");
-                    csvContent.AppendLine($"Total Number of Executable Line of Code;{totalLOC};");
-                    csvContent.AppendLine($"Conciseness (#Line of Code / Function);{conciseness1:F2};");
-                    csvContent.AppendLine($"Conciseness (#Executable Line of Code / Function);{conciseness2:F2};");
+                    csvContent.AppendLine($"Total Number of Function :;{totalFeatures};");
+                    csvContent.AppendLine($"Total Number Line of Code :;{totalLines};");
+                    csvContent.AppendLine($"Total Number of Executable Line of Code :;{totalLOC};");
+                    csvContent.AppendLine($"Conciseness (#Line of Code / Function) :;{conciseness1:F2};");
+                    csvContent.AppendLine($"Conciseness (#Executable Line of Code / Function) :;{conciseness2:F2};");
                     csvContent.AppendLine(";;");
                     csvContent.AppendLine("Function Name;");
 
@@ -221,7 +217,6 @@ namespace FeatureConciseness
                         if (!string.IsNullOrWhiteSpace(method))
                         {
                             string methodName = method.Trim();
-                            // Menghapus nomor urut jika sudah ada
                             methodName = System.Text.RegularExpressions.Regex.Replace(methodName, @"^\d+\.", "");
                             csvContent.AppendLine($"{sequenceNumber}. {methodName.Replace(". ", ";")};");
                             sequenceNumber++;
@@ -236,7 +231,6 @@ namespace FeatureConciseness
 
                         if (saveFileDialog.ShowDialog() == DialogResult.OK)
                         {
-                            // Save the CSV content to the selected file
                             string csvFilePath = saveFileDialog.FileName;
                             File.WriteAllText(csvFilePath, csvContent.ToString());
 
@@ -257,8 +251,27 @@ namespace FeatureConciseness
 
         private void bt_help_Click(object sender, EventArgs e)
         {
-            // Buka link menggunakan browser default
-            System.Diagnostics.Process.Start("https://github.com/seoeka/uas-pkpl-conciseness/blob/master/README.md");
+            contextMenuStrip1.Show(bt_help, new Point(0, bt_help.Height));
+        }
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string message = "How to Use the Application:\n\n";
+            message += "1. Upload your C# file\n";
+            message += "2. Click the 'Calculate Conciseness' button to calculate the Conciseness score\n";
+            message += "3. The result of the calculation will be displayed on the screen\n";
+            message += "4. If you want to export the result to a CSV file, please click the 'Export to CSV' button";
+
+            MessageBox.Show(message, "How to Use the Application", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void onlineNotesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to open the Online Notes?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start("https://github.com/seoeka/uas-pkpl-conciseness/blob/master/README.md");
+            }
         }
 
     }
