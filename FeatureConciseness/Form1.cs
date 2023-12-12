@@ -204,6 +204,7 @@ namespace FeatureConciseness
                     // Create a StringBuilder to build the CSV content
                     StringBuilder csvContent = new StringBuilder();
                     csvContent.AppendLine("Name;Output;");
+                    csvContent.AppendLine($"Total Number of Function;{totalFeatures};");
                     csvContent.AppendLine($"Total Number Line of Code;{totalLines};");
                     csvContent.AppendLine($"Total Number of Executable Line of Code;{totalLOC};");
                     csvContent.AppendLine($"Conciseness (#Line of Code / Function);{conciseness1:F2};");
