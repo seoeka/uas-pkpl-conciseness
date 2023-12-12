@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.bt_upload = new System.Windows.Forms.Button();
             this.bt_calculate = new System.Windows.Forms.Button();
@@ -89,9 +90,7 @@
             this.label2.Padding = new System.Windows.Forms.Padding(2);
             this.label2.Size = new System.Drawing.Size(355, 250);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Total Number of Function :\r\nTotal Number Line of Code :\r\nTotal Number of Executab" +
-    "le Line of Code :\r\n\r\nConciseness (#Line of Code / Function) =\r\nConciseness  (#Ex" +
-    "ecutable Line of Code / Function) =\r\n";
+            this.label2.Text = resources.GetString("label2.Text");
             // 
             // panel1
             // 

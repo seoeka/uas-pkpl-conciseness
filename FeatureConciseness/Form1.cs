@@ -47,8 +47,8 @@ namespace FeatureConciseness
 
                 if (totalLines > 0)
                 {
-                    double conciseness1 = (double)totalLines / totalFeatures;
-                    double conciseness2 = (double)totalLOC / totalFeatures;
+                    double conciseness1 = (double)totalLOC / totalFeatures;
+                    double conciseness2 = (double)totalLines / totalFeatures;
                     label2.Text = $"Total Number of Function : {totalFeatures}\nTotal Number Line of Code : {totalLOC}\nTotal Number of Executable Line of Code : {totalLines}\n\nConciseness (#Line of Code / Function) = {conciseness1:F2}\nConciseness  (#Executable Line of Code / Function) = {conciseness2:F2}";
 
                     string methodNames = ExtractMethodNames(lines);
