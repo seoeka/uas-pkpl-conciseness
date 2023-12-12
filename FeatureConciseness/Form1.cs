@@ -47,8 +47,8 @@ namespace FeatureConciseness
 
                 if (totalLines > 0)
                 {
-                    double conciseness1 = (double)totalLOC / totalFeatures;
-                    double conciseness2 = (double)totalLines / totalFeatures;
+                    double conciseness1 = (double)totalLines / totalFeatures;
+                    double conciseness2 = (double)totalLOC / totalFeatures;
                     label2.Text = $"Total Number of Function : {totalFeatures}\nTotal Number Line of Code : {totalLOC}\nTotal Number of Executable Line of Code : {totalLines}\n\nConciseness (#Line of Code / Function) = {conciseness1:F2}\nConciseness  (#Executable Line of Code / Function) = {conciseness2:F2}";
 
                     string methodNames = ExtractMethodNames(lines);
@@ -203,13 +203,29 @@ namespace FeatureConciseness
 
                     // Create a StringBuilder to build the CSV content
                     StringBuilder csvContent = new StringBuilder();
-                    csvContent.AppendLine("Total Number of Function,Total Number Line of Code,Total Number of Executable Line of Code,Conciseness (#Line of Code / Function),Conciseness (#Executable Line of Code / Function)");
-                    csvContent.AppendLine($"{totalFeatures},{totalLOC},{totalLines},{conciseness1:F2},{conciseness2:F2}");
-                    csvContent.AppendLine(); // Add an empty line
-                    csvContent.AppendLine("Function Name");
+                    csvContent.AppendLine("Name;Output;");
+                    csvContent.AppendLine($"Total Number Line of Code;{totalLines};");
+                    csvContent.AppendLine($"Total Number of Executable Line of Code;{totalLOC};");
+                    csvContent.AppendLine($"Conciseness (#Line of Code / Function);{conciseness1:F2};");
+                    csvContent.AppendLine($"Conciseness (#Executable Line of Code / Function);{conciseness2:F2};");
+                    csvContent.AppendLine(";;");
+                    csvContent.AppendLine("Function Name;");
 
                     string methodNames = ExtractMethodNames(lines);
-                    csvContent.AppendLine(methodNames);
+                    string[] methods = methodNames.Split('\n');
+                    int sequenceNumber = 1;
+
+                    foreach (string method in methods)
+                    {
+                        if (!string.IsNullOrWhiteSpace(method))
+                        {
+                            string methodName = method.Trim();
+                            // Menghapus nomor urut jika sudah ada
+                            methodName = System.Text.RegularExpressions.Regex.Replace(methodName, @"^\d+\.", "");
+                            csvContent.AppendLine($"{sequenceNumber}. {methodName.Replace(". ", ";")};");
+                            sequenceNumber++;
+                        }
+                    }
 
                     using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                     {
