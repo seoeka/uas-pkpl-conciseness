@@ -52,7 +52,7 @@ namespace FeatureConciseness
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(148, 49);
+            this.label1.Location = new System.Drawing.Point(148, 43);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(231, 46);
             this.label1.TabIndex = 0;
@@ -62,7 +62,7 @@ namespace FeatureConciseness
             // bt_upload
             // 
             this.bt_upload.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.bt_upload.Location = new System.Drawing.Point(351, 120);
+            this.bt_upload.Location = new System.Drawing.Point(351, 114);
             this.bt_upload.Name = "bt_upload";
             this.bt_upload.Size = new System.Drawing.Size(91, 30);
             this.bt_upload.TabIndex = 1;
@@ -73,7 +73,7 @@ namespace FeatureConciseness
             // bt_calculate
             // 
             this.bt_calculate.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.bt_calculate.Location = new System.Drawing.Point(87, 158);
+            this.bt_calculate.Location = new System.Drawing.Point(87, 152);
             this.bt_calculate.Name = "bt_calculate";
             this.bt_calculate.Size = new System.Drawing.Size(355, 30);
             this.bt_calculate.TabIndex = 2;
@@ -84,7 +84,7 @@ namespace FeatureConciseness
             // bt_export
             // 
             this.bt_export.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.bt_export.Location = new System.Drawing.Point(538, 381);
+            this.bt_export.Location = new System.Drawing.Point(538, 375);
             this.bt_export.Name = "bt_export";
             this.bt_export.Size = new System.Drawing.Size(160, 30);
             this.bt_export.TabIndex = 3;
@@ -95,7 +95,7 @@ namespace FeatureConciseness
             // bt_help
             // 
             this.bt_help.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.bt_help.Location = new System.Drawing.Point(704, 381);
+            this.bt_help.Location = new System.Drawing.Point(704, 375);
             this.bt_help.Name = "bt_help";
             this.bt_help.Size = new System.Drawing.Size(132, 30);
             this.bt_help.TabIndex = 3;
@@ -107,7 +107,7 @@ namespace FeatureConciseness
             // 
             this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(87, 122);
+            this.textBox1.Location = new System.Drawing.Point(87, 116);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(258, 26);
             this.textBox1.TabIndex = 4;
@@ -117,12 +117,12 @@ namespace FeatureConciseness
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(87, 198);
+            this.label2.Location = new System.Drawing.Point(87, 192);
             this.label2.MaximumSize = new System.Drawing.Size(355, 2);
-            this.label2.MinimumSize = new System.Drawing.Size(355, 250);
+            this.label2.MinimumSize = new System.Drawing.Size(355, 270);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(2);
-            this.label2.Size = new System.Drawing.Size(355, 250);
+            this.label2.Size = new System.Drawing.Size(355, 270);
             this.label2.TabIndex = 5;
             this.label2.Text = resources.GetString("label2.Text");
             // 
@@ -132,7 +132,7 @@ namespace FeatureConciseness
             this.panel1.AutoScroll = true;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Location = new System.Drawing.Point(538, 98);
+            this.panel1.Location = new System.Drawing.Point(538, 92);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(298, 277);
             this.panel1.TabIndex = 7;
@@ -151,7 +151,7 @@ namespace FeatureConciseness
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(604, 58);
+            this.label4.Location = new System.Drawing.Point(604, 52);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(168, 25);
             this.label4.TabIndex = 8;
